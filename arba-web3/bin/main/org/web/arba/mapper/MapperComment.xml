@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper 
+PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+
+<mapper namespace="org.web.arba.mapper.MapperComment">
+
+    <insert id="insertComment" parameterType="org.web.arba.model.ModelComment" useGeneratedKeys="true" keyProperty="comment_no">
+        INSERT INTO tb_comment
+               (  comment_content , comment_regdate,   article_no ,   user_id  , comment_use)
+        VALUES (#{comment_content}, NOW()          , #{article_no}, #{user_id} , 1          )
+    </insert>
+    
+    <select id="getCommentList" parameterType="int" resultType="org.web.arba.model.ModelComment">
+        SELECT * FROM tb_comment
+        WHERE article_no = #{article_no}
+        AND comment_use = 1
+    </select>
+    
+    <update id="updateComment" parameterType="org.web.arba.model.ModelComment">
+        UPDATE tb_comment
+        SET comment_content = #{comment_content},
+        comment_regdate = NOW()
+        WHERE comment_no = #{comment_no}
+    </update>
+    
+    <update id="deleteComment" parameterType="int">
+        UPDATE tb_comment
+        SET comment_use = null
+        WHERE comment_no = #{comment_no}
+    </update>
+    
+</mapper>

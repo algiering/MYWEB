@@ -1,0 +1,120 @@
+@charset "UTF-8";
+* {
+    margin: 0;
+    padding: 0;
+    font-family: 돋움, Dotum;
+    font-size: 13px;
+}
+
+#delete_form {
+    width: 100%;
+    text-align: center;
+}
+
+#delete_form>#form {
+    margin: 10px;
+    border: 1px solid #ddd;
+    border-radius: 4px;
+}
+
+#delete_form>#form>#title {
+    font-weight: bold;
+    font-size: 20px;
+    margin: 10px;
+}
+#delete_form>#form>#btn_cancel {
+    display: inline-flex;
+    width: 70px;
+    height: 30px;
+    border: 1px solid #ddd;
+    border-radius: 4px;
+    justify-content: center;
+    align-items: center;
+    margin: 0 3px;
+}
+#delete_form>#form>#btn_delete {
+    display: inline-flex;
+    width: 70px;
+    height: 30px;
+    border: 1px solid #ddd;
+    border-radius: 4px;
+    justify-content: center;
+    align-items: center;
+    margin: 0 3px;
+}
+#delete_form>#form>#btn_delete:hover {
+    border-color: #99b2ff;
+    color: #99b2ff;
+}
+#delete_form>#form>#btn_cancel:hover {
+    border-color: #99b2ff;
+    color: #99b2ff;
+}
+
+#delete_form>#form>form {
+    
+}
+
+#delete_form>#form>form>div {
+    width: 100%;
+    margin: 10px 0;
+}
+
+#delete_form>#form>form>div>div {
+    display: inline-block;
+}
+
+#delete_form>#form>form>div>#col0 {
+    width: 15%;
+    text-align: center;
+}
+
+#delete_form>#form>form>div>#col1 {
+    text-align: left;
+    width: 45%;
+}
+
+#delete_form>#form>form>div>#col1>.one {
+    width: 280px;
+}
+
+#delete_form>#form>#blank {
+    height: 30px;
+}
+
+#delete_form>#btn_container {
+    margin: 5px;
+    height: 40px;
+}
+
+#delete_form>#btn_container>div {
+    display: inline-flex;
+    width: 70px;
+    height: 30px;
+    border: 1px solid #ddd;
+    border-radius: 4px;
+    justify-content: center;
+    align-items: center;
+    margin: 0 3px;
+}
+
+#delete_form>#btn_container>div:nth-child(1) {
+    float: left;
+}
+
+#delete_form>#btn_container>div:nth-child(2) {
+    float: right;
+}
+
+#delete_form>#btn_container>div:nth-child(3) {
+    float: right;
+}
+
+#delete_form>#btn_container>div:hover {
+    border-color: #99b2ff;
+    color: #99b2ff;
+}
+
+#container {
+    margin: 20px;
+}

@@ -1,0 +1,91 @@
+@charset "UTF-8";
+* {
+    margin: 0;
+    padding: 0;
+    font-family: 돋움, Dotum;
+    font-size: 13px;
+}
+
+#membership_form {
+    width: 100%;
+    text-align: center;
+}
+
+#membership_form>#form {
+    margin: 10px;
+    border: 1px solid #ddd;
+    border-radius: 4px;
+}
+
+#membership_form>#form>#title {
+    font-weight: bold;
+    font-size: 20px;
+    margin: 10px;
+}
+
+#membership_form>#form>form {
+    
+}
+
+#membership_form>#form>form>div {
+    width: 100%;
+    margin: 10px 0;
+}
+
+#membership_form>#form>form>div>div {
+    display: inline-block;
+}
+
+#membership_form>#form>form>div>#col0 {
+    width: 15%;
+    text-align: center;
+}
+
+#membership_form>#form>form>div>#col1 {
+    text-align: left;
+    width: 45%;
+}
+
+#membership_form>#form>form>div>#col1>.one {
+    width: 280px;
+}
+
+#membership_form>#form>#blank {
+    height: 30px;
+}
+
+#membership_form>#btn_container {
+    margin: 5px;
+}
+
+#membership_form>#btn_container>div {
+    display: inline-flex;
+    width: 70px;
+    height: 30px;
+    border: 1px solid #ddd;
+    border-radius: 4px;
+    justify-content: center;
+    align-items: center;
+    margin: 0 3px;
+}
+
+#membership_form>#btn_container>div:nth-child(1) {
+    float: left;
+}
+
+#membership_form>#btn_container>div:nth-child(2) {
+    float: right;
+}
+
+#membership_form>#btn_container>div:nth-child(3) {
+    float: right;
+}
+
+#membership_form>#btn_container>div:hover {
+    border-color: #99b2ff;
+    color: #99b2ff;
+}
+
+#container {
+    margin: 20px;
+}

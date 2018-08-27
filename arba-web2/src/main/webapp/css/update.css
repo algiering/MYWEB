@@ -1,0 +1,140 @@
+@charset "UTF-8";
+
+* {
+    margin: 0;
+    padding: 0;
+    font-family: 돋움, Dotum;
+    font-size: 13px;
+}
+
+#update_form {
+    width: 100%;
+}
+
+#board_title {
+    font-weight: bold;
+}
+#board_title>div {
+    display: inline-block;
+    font-size: 30px
+}
+#board_title>div:nth-child(1) {
+    color: #99b2ff;
+}
+#board_title>div:nth-child(2) {
+    color: #2d2d2d;
+}
+
+#update_form>hr {
+    width: 98%;
+    margin: 0 auto;
+    border-color: #99b2ff;
+}
+
+#update_form>div {
+    margin: 5px;
+}
+
+#update_form>#title {
+    width: 98%;
+}
+
+#update_form>#title>div {
+    display: inline-block;
+}
+
+#update_form>#title>div:nth-child(1) {
+    text-align: center;
+    width: 10%;
+}
+
+#update_form>#title>div:nth-child(2) {
+    width: 80%;
+}
+
+#update_form>#title>div>input {
+    width: 100%;
+}
+#update_form>#file_list>div>div {
+    display: inline-flex;
+    justify-content: center;
+    align-items: center;
+}
+#update_form>#file_list>div>div:nth-child(1) {
+    text-align: center;
+    width: 10%;
+}
+#update_form>#file_list>div>div:nth-child(2) {
+    width: 70%;
+    justify-content: flex-start;
+}
+#update_form>#file_list>div>div:nth-child(3) {
+    width: 16px;
+    border: 1px solid black;
+    text-align: left;
+}
+
+#update_form>#file>div {
+    display: inline-block;
+}
+
+#update_form>#file>div:nth-child(1) {
+    width: 10%;
+    text-align: center;
+}
+
+#update_form>#file>div:nth-child(2) {
+    width: 80%;
+}
+
+#update_form>#content>div {
+    text-align: center;
+}
+
+#update_form>#content>div>textarea {
+    width: 98%;
+    height: 400px;
+}
+
+#update_form>#btn_container>div {
+    display: inline-flex;
+    width: 70px;
+    height: 30px;
+    border: 1px solid #ddd;
+    border-radius: 4px;
+    justify-content: center;
+    align-items: center;
+    margin: 0 3px;
+}
+
+#update_form>#btn_container>div:nth-child(2) {
+    float: right;
+}
+
+#update_form>#btn_container>div:nth-child(3) {
+    float: right;
+}
+
+#update_form>#btn_container>div:hover {
+    border-color: #99b2ff;
+    color: #99b2ff;
+}
+
+#update_form>#add_input {
+    display: inline-flex;
+    justify-content: center;
+    align-items: center;
+    width: 60px;
+    height: 20px;
+    border: 1px solid #ddd;
+    margin-left: 10px;
+}
+
+#update_form>#add_input:hover {
+    border-color: #99b2ff;
+    color: #99b2ff;
+}
+
+#container {
+    margin: 20px;
+}

@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper 
+PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+
+<mapper namespace="org.web.arba.mapper.MapperUser">
+
+    <insert id="insertUser" parameterType="org.web.arba.model.ModelUser">
+        INSERT INTO tb_user
+               (  user_id ,   user_passwd ,   user_email ,   user_phone , user_use)
+        VALUES (#{user_id}, #{user_passwd}, #{user_email}, #{user_phone}, 1       )
+    </insert>
+    
+    <select id="login" parameterType="org.web.arba.model.ModelUser" resultType="String">
+        SELECT user_passwd FROM tb_user
+        WHERE user_id = #{user_id}
+    </select>
+    
+    <select id="idCheck" parameterType="String" resultType="int">
+        SELECT COUNT(*) FROM tb_user
+        WHERE user_id = #{user_id}
+    </select>
+    
+</mapper>

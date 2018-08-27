@@ -1,0 +1,106 @@
+@charset "UTF-8";
+* {
+    margin: 0;
+    padding: 0;
+    font-family: 돋움, Dotum;
+    font-size: 13px;
+}
+
+#after_member {
+    width: 100%;
+    text-align: center;
+}
+
+#after_member>#form {
+    margin: 10px;
+    border: 1px solid #ddd;
+    border-radius: 4px;
+}
+
+#after_member>#form>#title {
+    font-weight: bold;
+    font-size: 20px;
+    margin: 10px;
+}
+#after_member>#form>#btn_login {
+    display: inline-flex;
+    width: 70px;
+    height: 30px;
+    border: 1px solid #ddd;
+    border-radius: 4px;
+    justify-content: center;
+    align-items: center;
+    margin: 0 3px;
+}
+#after_member>#form>#btn_login:hover {
+    border-color: #99b2ff;
+    color: #99b2ff;
+}
+
+#after_member>#form>form {
+    
+}
+
+#after_member>#form>form>div {
+    width: 100%;
+    margin: 10px 0;
+}
+
+#after_member>#form>form>div>div {
+    display: inline-block;
+}
+
+#after_member>#form>form>div>#col0 {
+    width: 15%;
+    text-align: center;
+}
+
+#after_member>#form>form>div>#col1 {
+    text-align: left;
+    width: 45%;
+}
+
+#after_member>#form>form>div>#col1>.one {
+    width: 280px;
+}
+
+#after_member>#form>#blank {
+    height: 30px;
+}
+
+#after_member>#btn_container {
+    margin: 5px;
+    height: 40px;
+}
+
+#after_member>#btn_container>div {
+    display: inline-flex;
+    width: 70px;
+    height: 30px;
+    border: 1px solid #ddd;
+    border-radius: 4px;
+    justify-content: center;
+    align-items: center;
+    margin: 0 3px;
+}
+
+#after_member>#btn_container>div:nth-child(1) {
+    float: left;
+}
+
+#after_member>#btn_container>div:nth-child(2) {
+    float: right;
+}
+
+#after_member>#btn_container>div:nth-child(3) {
+    float: right;
+}
+
+#after_member>#btn_container>div:hover {
+    border-color: #99b2ff;
+    color: #99b2ff;
+}
+
+#container {
+    margin: 20px;
+}

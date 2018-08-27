@@ -1,0 +1,122 @@
+@charset "UTF-8";
+
+* {
+    margin: 0;
+    padding: 0;
+    font-family: 돋움, Dotum;
+    font-size: 13px;
+}
+
+#write_form {
+    width: 100%;
+}
+
+#board_title {
+    font-weight: bold;
+}
+#board_title>div {
+    display: inline-block;
+    font-size: 30px
+}
+#board_title>div:nth-child(1) {
+    color: #99b2ff;
+}
+#board_title>div:nth-child(2) {
+    color: #2d2d2d;
+}
+
+#write_form>hr {
+    width: 98%;
+    margin: 0 auto;
+    border-color: #99b2ff;
+}
+
+#write_form>div {
+    margin: 5px;
+}
+
+#write_form>#title {
+    width: 100%;
+}
+
+#write_form>#title>div {
+    display: inline-block;
+}
+
+#write_form>#title>div:nth-child(1) {
+    text-align: center;
+    width: 10%;
+}
+
+#write_form>#title>div:nth-child(2) {
+    width: 80%;
+}
+
+#write_form>#title>div>input {
+    width: 100%;
+}
+
+#write_form>#file>div {
+    display: inline-block;
+}
+
+#write_form>#file>div:nth-child(1) {
+    width: 10%;
+    text-align: center;
+}
+
+#write_form>#file>div:nth-child(2) {
+    width: 80%;
+}
+
+#write_form>#content>div {
+    text-align: center;
+}
+
+#write_form>#content>div>textarea {
+    width: 98%;
+    height: 400px;
+}
+
+#write_form>#btn_container>div {
+    display: inline-flex;
+    width: 70px;
+    height: 30px;
+    border: 1px solid #ddd;
+    border-radius: 4px;
+    justify-content: center;
+    align-items: center;
+    margin: 0 3px;
+}
+
+#write_form>#btn_container>div:nth-child(2) {
+    float: right;
+}
+
+#write_form>#btn_container>div:nth-child(3) {
+    float: right;
+}
+
+#write_form>#btn_container>div:hover {
+    border-color: #99b2ff;
+    color: #99b2ff;
+}
+
+#write_form>#add_input {
+    display: inline-flex;
+    justify-content: center;
+    align-items: center;
+    width: 60px;
+    height: 20px;
+    border: 1px solid #ddd;
+    margin-left: 10px;
+}
+
+#write_form>#add_input:hover {
+    border-color: #99b2ff;
+    color: #99b2ff;
+}
+
+#container {
+    margin: 20px;
+}

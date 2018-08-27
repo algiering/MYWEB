@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper 
+PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+
+<mapper namespace="org.web.arba.mapper.MapperFile">
+
+    <insert id="insertFile" parameterType="org.web.arba.model.ModelFile">
+        INSERT INTO tb_file
+               (  file_name ,   file_nametemp ,   file_type ,   file_path  ,   file_size ,   user_id  , file_regdate ,   article_no , file_use)
+        VALUES (#{file_name}, #{file_nametemp}, #{file_type}, #{file_path} , #{file_size}, #{user_id} , NOW()        , #{article_no}, 1       )
+    </insert>
+    
+    <select id="getFileName" parameterType="int" resultType="org.web.arba.model.ModelFile">
+        SELECT * FROM tb_file
+        WHERE article_no = #{article_no}
+        AND file_use = 1
+    </select>
+    
+    <select id="getFileOne" parameterType="int" resultType="org.web.arba.model.ModelFile">
+        SELECT * FROM tb_file
+        WHERE file_no = #{file_no}
+    </select>
+    
+    <update id="deleteFileOne" parameterType="int">
+        UPDATE tb_file
+        SET file_use = null
+        WHERE file_no = #{file_no}
+    </update>
+    
+</mapper>

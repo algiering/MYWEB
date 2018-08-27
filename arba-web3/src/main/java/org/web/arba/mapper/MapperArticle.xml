@@ -1,0 +1,170 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper 
+PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+
+<mapper namespace="org.web.arba.mapper.MapperArticle">
+
+    <select id="articleCount" resultType="int">
+        SELECT
+        COUNT(*)
+        FROM tb_article
+    </select>
+    
+    <select id="getArticleAll" resultType="org.web.arba.model.ModelArticle">
+        SELECT * FROM
+        (SELECT @RNUM:=@RNUM+1 r, a.* FROM
+        (SELECT * FROM tb_article WHERE board_id = #{board_id}
+        ORDER BY subno DESC) a,
+        (SELECT @RNUM:=0) b) temp)
+    </select>
+    
+    <select id="getArticleTotalRecord" parameterType="HashMap" resultType="int">
+        SELECT COUNT(article_no) FROM tb_article WHERE board_id = #{board_id}
+          <if test="searchType == 'title'">
+            AND article_title LIKE CONCAT('%', #{searchValue}, '%')
+          </if>
+          <if test="searchType == 'content'">
+            AND article_content LIKE CONCAT('%', #{searchValue}, '%')
+          </if>
+          <if test="searchType == 'titlecontent'">
+            AND (article_title LIKE CONCAT('%', #{searchValue}, '%') OR article_content LIKE CONCAT('%', #{searchValue}, '%'))
+          </if>
+          <if test="searchType == 'writer'">
+            AND user_id = #{searchValue}
+          </if>
+          AND article_use = 1
+    </select>
+    
+    <select id="getArticleOfBoard" parameterType="HashMap" resultType="org.web.arba.model.ModelArticle">
+        SELECT * FROM
+        (SELECT @RNUM:=@RNUM+1  r, a.* FROM
+        (SELECT c.comment_count, z.vote_count ,x.*, y.file_no, y.file_name, y.file_nametemp, y.file_type, y.file_path, y.file_regdate, y.file_use, y.user_id 'file_userid', y.article_no 'file_article_no' FROM tb_article x
+        LEFT JOIN tb_file y
+        ON x.article_no = y.article_no
+        LEFT JOIN (SELECT article_no ,COUNT(*) vote_count FROM tb_vote WHERE vote_goodbad=1 GROUP BY article_no) z
+        ON x.article_no = z.article_no
+        LEFT JOIN (SELECT article_no ,COUNT(*) comment_count FROM tb_comment WHERE comment_use=1 GROUP BY article_no) c
+        ON x.article_no = c.article_no
+            WHERE x.board_id = #{board_id}
+          <if test="searchType == 'title'">
+            AND x.article_title LIKE CONCAT('%', #{searchValue}, '%')
+          </if>
+          <if test="searchType == 'content'">
+            AND x.article_content LIKE CONCAT('%', #{searchValue}, '%')
+          </if>
+          <if test="searchType == 'titlecontent'">
+            AND (x.article_title LIKE CONCAT('%', #{searchValue}, '%') OR x.article_content LIKE CONCAT('%', #{searchValue}, '%'))
+          </if>
+          <if test="searchType == 'writer'">
+            AND x.user_id = #{searchValue}
+          </if>
+        AND x.article_use = 1
+        AND (y.file_use IS NULL OR y.file_use = 1)
+        GROUP BY x.article_no ,y.article_no
+        ORDER BY article_subno DESC) a,
+        (SELECT @RNUM:=0) b) temp
+        WHERE r BETWEEN #{start} AND #{end}
+    </select>
+    
+    <select id="getArticleOfBoardInArticle" parameterType="HashMap" resultType="int">
+        SELECT r FROM
+        (SELECT @RNUM:=@RNUM+1  r, a.* FROM
+        (SELECT c.comment_count, z.vote_count ,x.*, y.file_no, y.file_name, y.file_nametemp, y.file_type, y.file_path, y.file_regdate, y.file_use, y.user_id 'file_userid', y.article_no 'file_article_no' FROM tb_article x
+        LEFT JOIN tb_file y
+        ON x.article_no = y.article_no
+        LEFT JOIN (SELECT article_no ,COUNT(*) vote_count FROM tb_vote WHERE vote_goodbad=1 GROUP BY article_no) z
+        ON x.article_no = z.article_no
+        LEFT JOIN (SELECT article_no ,COUNT(*) comment_count FROM tb_comment WHERE comment_use=1 GROUP BY article_no) c
+        ON x.article_no = c.article_no
+        WHERE x.board_id = #{board_id}
+          <if test="searchType == 'title'">
+            AND x.article_title LIKE CONCAT('%', #{searchValue}, '%')
+          </if>
+          <if test="searchType == 'content'">
+            AND x.article_content LIKE CONCAT('%', #{searchValue}, '%')
+          </if>
+          <if test="searchType == 'titlecontent'">
+            AND (x.article_title LIKE CONCAT('%', #{searchValue}, '%') OR (x.article_content LIKE CONCAT('%', #{searchValue}, '%'))
+          </if>
+          <if test="searchType == 'writer'">
+            AND x.user_id = #{searchValue}
+          </if>
+        AND x.article_use = 1
+        AND (y.file_use IS NULL OR y.file_use = 1)
+        GROUP BY x.article_no ,y.article_no
+        ORDER BY article_subno DESC) a,
+        (SELECT @RNUM:=0) b) temp
+        WHERE temp.article_no = #{article_no}
+    </select>
+    
+    <select id="getArticleOne" parameterType="HashMap" resultType="org.web.arba.model.ModelArticle">
+        SELECT * FROM tb_article
+        WHERE board_id = #{board_id}
+        AND article_subno = #{article_subno}
+        AND article_use = 1
+    </select>
+    
+    <insert id="insertArticle" parameterType="org.web.arba.model.ModelArticle" useGeneratedKeys="true" keyProperty="article_no">
+        INSERT INTO tb_article
+               (  article_subno ,   article_title ,   article_content , article_hit, article_good, article_bad, article_regdate,   user_id ,   board_id , article_use )
+        VALUES (#{article_subno}, #{article_title}, #{article_content}, 0          , 0           , 0          , NOW()          , #{user_id}, #{board_id}, 1           )
+    </insert>
+    
+    <select id="getArticleMAXSubno" parameterType="String" resultType="int">
+        SELECT MAX(article_subno)+1 FROM tb_article WHERE board_id=#{board_id}
+    </select>
+    
+    <update id="increaseHit" parameterType="org.web.arba.model.ModelArticle">
+        <selectKey keyProperty="article_hit" resultType="int" order="BEFORE">
+            SELECT article_hit+1 FROM tb_article WHERE article_no = #{article_no}
+        </selectKey>
+        UPDATE tb_article
+        SET article_hit = #{article_hit}
+        WHERE article_no = #{article_no}
+    </update>
+    
+    <update id="updateArticle" parameterType="org.web.arba.model.ModelArticle">
+        UPDATE tb_article
+        SET article_title = #{article_title},
+        article_content = #{article_content},
+        article_update = NOW()
+        WHERE article_subno = #{article_subno}
+        AND board_id = #{board_id}
+    </update>
+    
+    <update id="deleteArticle" parameterType="org.web.arba.model.ModelArticle">
+        UPDATE tb_article
+        SET article_use = null
+        WHERE article_subno = #{article_subno}
+        AND board_id = #{board_id}
+        AND user_id = #{user_id}
+    </update>
+    
+    <select id="checkVote" parameterType="org.web.arba.model.ModelVote" resultType="int">
+        SELECT COUNT(*) FROM tb_vote
+        WHERE article_no = #{article_no}
+        AND user_id = #{user_id}
+        AND vote_goodbad = #{vote_goodbad}
+    </select>
+    
+    <select id="getArticleVoteCount" parameterType="org.web.arba.model.ModelVote" resultType="int">
+        SELECT COUNT(*) FROM tb_vote
+        WHERE article_no = #{article_no}
+        AND vote_goodbad = #{vote_goodbad}
+    </select>
+    
+    <insert id="insertVote" parameterType="org.web.arba.model.ModelVote">
+        INSERT INTO tb_vote
+              (  article_no ,   user_id ,   vote_goodbad )
+        VALUES(#{article_no}, #{user_id}, #{vote_goodbad})
+    </insert>
+    
+    <delete id="deleteVote" parameterType="org.web.arba.model.ModelVote">
+        DELETE FROM tb_vote
+        WHERE article_no = #{article_no}
+        AND user_id = #{user_id}
+        AND vote_goodbad = #{vote_goodbad}
+    </delete>
+    
+</mapper>
